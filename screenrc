@@ -1,0 +1,40 @@
+# トリガーキーの設定(Ctrl A)
+escape ^Aa
+
+# スクロールバッファ(1000行)
+defscrollback 1000
+
+# 起動時画面の表示制御(表示しない)
+startup_message off
+
+#screenタイトルをbashから引用
+shelltitle '] |bash'
+
+# キャプション設定
+caption always '%?%F%{= Wk}%:%{= Kk}%?%2n%f%07=%t%='
+
+#ハードステータス設定
+hardstatus alwayslastline '%{-} %L=%-w%45L>%{= kb}%n %t%{-}%+w %-17<%=%{= .y}(%l)'
+
+# ウィンドウリストタイトルカスタマイズ
+windowlist title  '%{u .W}Screen List%='
+# ウィンドウリスト文字列カスタマイズ
+windowlist string '%{.w}%3n %{.w}%f%09=%{-} %t %='
+
+#起動時にターミナルサイズをリサイズしない
+termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+# ヴィジュアルベル設定(無効)
+vbell off
+
+# リサイズモード
+# Ctrl+a -> r でリサイズモード移行 -> jk等でウィンドウリサイズ
+# orverride default `r'(wrap) mapping.
+ bind r eval 'command -c cresize'
+ bind -c cresize j eval 'resize +1'  'command -c cresize'
+ bind -c cresize k eval 'resize -1'  'command -c cresize'
+ bind -c cresize J eval 'resize +10' 'command -c cresize'
+ bind -c cresize K eval 'resize -10' 'command -c cresize'
+ bind -c cresize = eval 'resize ='   'command -c cresize'
+ bind -c cresize n eval 'resize min' 'command -c cresize'
+ bind -c cresize x eval 'resize max' 'command -c cresize'
