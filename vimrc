@@ -15,6 +15,18 @@ set shiftwidth=4
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
+set encoding=utf-8
+set fileencodings=utf-8,cp932,euc-jp
+
+if &term == "screen"
+    set t_ts=k
+    set t_fs=\
+    auto BufEnter * :set title | let &titlestring = expand('%')
+    auto VimLeave * :set t_ts=
+endif
+if &term == "screen" || &term == "xterm"
+  set title
+endif
 
 " Unite
 "nnoremap <silent> ,ub : <C-u>Unite buffer -auto-resize<CR>
@@ -35,3 +47,4 @@ set termencoding=utf-8
 
 " Window
 au GUIEnter * simalt ~x
+
